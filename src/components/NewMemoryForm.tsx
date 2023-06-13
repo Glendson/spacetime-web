@@ -4,6 +4,8 @@ import { Camera } from 'lucide-react'
 import { FormEvent } from 'react'
 import { api } from '@/lib/api'
 import { useRouter } from 'next/navigation'
+import Cookie from 'js-cookie'
+import { MediaPicker } from './MediaPicker'
 
 export function NewMemoryForm() {
   const router = useRouter()
@@ -26,9 +28,7 @@ export function NewMemoryForm() {
       coverUrl = uploadResponse.data.fileUrl
     }
 
-    {
-      /* const token = Cookie.get('token') */
-    }
+    const token = Cookie.get('token')
 
     await api.post(
       '/memories',
@@ -72,6 +72,8 @@ export function NewMemoryForm() {
           Tornar memória pública
         </label>
       </div>
+
+      <MediaPicker />
 
       <textarea
         name="content"
